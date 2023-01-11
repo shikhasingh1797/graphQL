@@ -1,0 +1,13 @@
+const { GraphQLList } = require('graphql');
+const { dbQuery } = require('../../database');
+const { CategoryTagType } = require('../../Models');
+
+const fieldsCategoryTags = {
+  type: new GraphQLList(CategoryTagType),
+  async resolve(_, {}){
+    let res = await dbQuery(`SELECT * FROM CategoryTag`);
+    return res;
+  }
+};
+
+module.exports = fieldsCategoryTags;
